@@ -3,6 +3,7 @@ package com.example.aakaeze3261.lab4;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.renderscript.Sampler;
@@ -13,91 +14,132 @@ import java.util.List;
 /**
  * Created by aakaeze3261 on 6/3/2016.
  */
+
+//This class manages all database operations
+
 public class DatabaseHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "student.db";
     public static final String TABLE_NAME = "students";
+
     public static final String COLUMN_FIRSTNAME = "firstname";
     public static final String COLUMN_LASTNAME = "lastname";
     public static final String COLUMN_MARKS = "marks";
     public static final String COLUMN_ID = "id";
-    SQLiteDatabase db;
-    private static final String TABLE_CREATE = "create table students (id integer primary key not null auto_increment, " +
-            "firstname text not null, lastname text not null, marks integer not null);";
 
-    public DatabaseHelper(Context context)
-    {
-        super(context , DATABASE_NAME,  null , DATABASE_VERSION);
+    SQLiteDatabase db;
+    /*private static final String TABLE_CREATE = "create table students (id integer primary key not null auto_increment, " +
+            "firstname text not null, lastname text not null, marks integer not null);";*/
+
+    //DBHelper constructor
+    public DatabaseHelper(Context context) {
+
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    //This method creates the Database for the program "execSQL" executes the
+    //Table create method created above
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(
+                "Create Table" + TABLE_NAME + "("+ COLUMN_ID +" integer primary key, "+ COLUMN_FIRSTNAME +
+                        " text, "+ COLUMN_LASTNAME+ " text, "+COLUMN_MARKS+" text)"
+        );
         this.db = db;
     }
 
-    public  void AddUser(AddInfo add)
+    // This method handles all data inserted into the database
+    public  boolean AddUser(String view_firstname, String view_lastname, String view_marks, String view_id)
     {
-        db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FIRSTNAME, add.GetFirstName());
-        values.put(COLUMN_LASTNAME, add.GetLastName());
-        values.put(COLUMN_MARKS, add.GetMarks());
-        values.put(COLUMN_ID, add.GetID());
+        values.put(COLUMN_FIRSTNAME, view_firstname);
+        values.put(COLUMN_LASTNAME, view_lastname);
+        values.put(COLUMN_MARKS, view_marks);
 
         db.insert(TABLE_NAME, null , values);
         db.close();
+
+        return true;
     }
 
-    public List<AddInfo> getAllUsers()
+    // This method handles all data inserted into the database
+    public  boolean UpdateUser(String view_firstname, String view_lastname, String view_marks, String view_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_FIRSTNAME, view_firstname);
+        values.put(COLUMN_LASTNAME, view_lastname);
+        values.put(COLUMN_MARKS, view_marks);
+
+        db.update(TABLE_NAME, values, COLUMN_ID+ "= ?", new String[]{Integer.toString(id)});
+        db.close();
+
+        return true;
+    }
+
+    // This method handles all deleted data from the database
+    public Integer deleteUser(Integer view_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[] { Integer.toString(view_id)});
+    }
+
+    public ArrayList<AddInfo> getAllUsers()
     {
         //GET ALL INFORMATION ON DB
-        List<AddInfo> Listusers = new ArrayList<AddInfo>();
+        ArrayList<AddInfo> List_users = new ArrayList<AddInfo>();
 
-        String selectUsers = "SELECT *FROM*" + TABLE_NAME;
+        AddInfo newAddInfo = new AddInfo();
 
         SQLiteDatabase db = this.getWritableDatabase();
+        String selectUsers = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(selectUsers, null);
+        cursor.moveToFirst();
 
         if(cursor.moveToFirst())
         {
             do{
+
                 AddInfo addInfo = new AddInfo();
 
-                addInfo.SetFirstName(cursor.getString(0));
-                addInfo.SetLastName((cursor.getString(1)));
-                addInfo.SetMarks((cursor.getString(2)));
-                addInfo.SetID((cursor.getString(3)));
+                addInfo.view_id = cursor.getString(cursor.getColumnIndex(COLUMN_ID));
+                addInfo.view_firstname = cursor.getString(cursor.getColumnIndex(COLUMN_FIRSTNAME));
+                addInfo.view_lastname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
+                addInfo.view_marks = cursor.getString(cursor.getColumnIndex(COLUMN_MARKS));
+
                 //Add Users to List
-                Listusers.add(addInfo);
+                List_users.add(addInfo);
             }
             while (cursor.moveToNext());
         }
-        return Listusers;
-    }
-
-    public int getUsersNumber()
-    {
-        String countUsersQuery = "SELECT *FROM*" + TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countUsersQuery, null);
         cursor.close();
-
-        //return countUsers
-        return cursor.getCount();
+        return List_users;
     }
 
-    public void deleteUser(AddInfo add)
+    ////////////////////////////////////////////
+    public Cursor getUsers(int view_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, COLUMN_ID + "=?",
-                new String[] {String.valueOf(add.GetID())});
-        db.close();
-    }
 
-    ////////START FROM PAGE 54 ////////////
+        String countUsers = "SELECT * FROM " + TABLE_NAME + "where" + COLUMN_ID + "=" +view_id+ "";
+        Cursor cursor = db.rawQuery(countUsers, null);
+        //return countUsers
+        return cursor;
+    }
+    //////////////////////////
+
+    public int all_rows()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int allrows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        return  allrows;
+    }
 
 
     @Override
@@ -108,7 +150,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         this.onCreate(db);
     }
-
 
 
 }

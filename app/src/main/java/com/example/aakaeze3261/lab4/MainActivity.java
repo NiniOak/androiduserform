@@ -2,6 +2,8 @@ package com.example.aakaeze3261.lab4;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -10,26 +12,40 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     //Declare all properties in the app here
+
     EditText FirstName, LastName, Marks, ID;
-    TextView first_NameLabel, last_nameLabel, marksLabel, id_label;
+    ImageButton add_btn;
+    ListView UserList = null;
+    List<AddInfo> UserInfo;
+    DatabaseHelper dbconnect;
+
+    public MainActivity()
+    {
+        //Add all student to array in lists
+        UserInfo = new ArrayList<AddInfo>();
+
+        //Instantiate db object
+
+
+        dbconnect = new DatabaseHelper(this);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.viewusers);
 
-        //Reference TextView and EditText from Activity_main.xml
+        UserList = ()
+    }
 
-        FirstName = (EditText)findViewById(R.id.FirstName);
-        LastName = (EditText)findViewById(R.id.LastName);
-        Marks = (EditText)findViewById(R.id.Marks);
-        ID = (EditText)findViewById(R.id.ID);
-        first_NameLabel = (TextView)findViewById(R.id.first_NameLabel);
-        last_nameLabel = (TextView)findViewById(R.id.last_nameLabel);
-        marksLabel = (TextView)findViewById(R.id.marksLabel);
-        id_label = (TextView)findViewById(R.id.id_label);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
