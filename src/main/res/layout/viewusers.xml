@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name:"
+        android:id="@+id/first_NameLabel"
+        android:textSize="25sp"
+        android:textColor="#060606"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_firstname"
+        android:textColor="#383434"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name:"
+        android:id="@+id/last_nameLabel"
+        android:textSize="25sp"
+        android:textColor="#FF060606"
+        android:layout_below="@+id/view_firstname"
+        android:layout_alignRight="@+id/first_NameLabel"
+        android:layout_alignEnd="@+id/first_NameLabel"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_lastname"
+        android:textColor="#383434"
+        android:layout_alignTop="@+id/last_nameLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marks:"
+        android:id="@+id/marksLabel"
+        android:layout_below="@+id/view_lastname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:textSize="25sp"
+        android:textColor="#FF060606"
+        android:layout_marginLeft="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_marks"
+        android:textColor="#383434"
+        android:layout_alignBottom="@+id/marksLabel"
+        android:layout_alignLeft="@+id/view_lastname"
+        android:layout_alignStart="@+id/view_lastname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID:"
+        android:id="@+id/id_label"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="25sp"
+        android:textColor="#FF060606"
+        android:layout_marginLeft="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_id"
+        android:textColor="#383434"
+        android:layout_alignTop="@+id/id_label"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="25dp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:id="@+id/view_deletebtn"
+        android:textColor="#fb0707"
+        android:onClick="btn_click"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignTop="@+id/view_updateuserbtn"
+        android:layout_alignLeft="@+id/view_marks"
+        android:layout_alignStart="@+id/view_marks" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/view_updateuserbtn"
+        android:layout_marginTop="52dp"
+        android:textColor="#FF16D316"
+        android:onClick="btn_click"
+        android:layout_below="@+id/view_id"
+        android:layout_alignRight="@+id/last_nameLabel"
+        android:layout_alignEnd="@+id/last_nameLabel"
+        android:singleLine="false" />
+
+</RelativeLayout>

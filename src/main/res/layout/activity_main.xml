@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.aakaeze3261.lab4.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name:"
+        android:id="@+id/first_NameLabel"
+        android:textSize="25sp"
+        android:textColor="#060606" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_firstname"
+        android:textColor="#383434"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name:"
+        android:id="@+id/last_nameLabel"
+        android:textSize="25sp"
+        android:textColor="#FF060606"
+        android:layout_below="@+id/view_firstname"
+        android:layout_alignRight="@+id/first_NameLabel"
+        android:layout_alignEnd="@+id/first_NameLabel"
+        android:layout_marginTop="36dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_lastname"
+        android:textColor="#383434"
+        android:layout_alignTop="@+id/last_nameLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marks:"
+        android:id="@+id/marksLabel"
+        android:layout_below="@+id/view_lastname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:textSize="25sp"
+        android:textColor="#FF060606" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/view_marks"
+        android:textColor="#383434"
+        android:layout_alignBottom="@+id/marksLabel"
+        android:layout_alignLeft="@+id/view_lastname"
+        android:layout_alignStart="@+id/view_lastname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:id="@+id/email_label"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="25sp"
+        android:textColor="#FF060606" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+<<<<<<< HEAD
+        android:id="@+id/Email"
+=======
+        android:id="@+id/view_id"
+>>>>>>> c1bec4d568281eba7da1833c4b19da0567fdf04b
+        android:textColor="#383434"
+        android:layout_alignTop="@+id/email_label"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+<<<<<<< HEAD
+        android:id="@+id/add_button"
+        android:layout_marginTop="34dp"
+=======
+        android:id="@+id/view_updateuserbtn"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/view_id"
+        android:layout_toLeftOf="@+id/view_lastname"
+        android:layout_toStartOf="@+id/view_lastname"
+>>>>>>> c1bec4d568281eba7da1833c4b19da0567fdf04b
+        android:textColor="#FF16D316"
+        android:onClick="btn_click"
+        android:layout_below="@+id/Email"
+        android:layout_alignRight="@+id/last_nameLabel"
+        android:layout_alignEnd="@+id/last_nameLabel" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEW DATA"
+        android:id="@+id/view_deletebtn"
+        android:layout_alignBottom="@+id/view_updateuserbtn"
+        android:layout_alignLeft="@+id/view_lastname"
+        android:layout_alignStart="@+id/view_lastname"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:textColor="#FF16D316"
+        android:onClick="btn_click" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:id="@+id/delete_button"
+        android:textColor="#FFE71414"
+        android:layout_below="@+id/view_deletebtn"
+        android:layout_alignRight="@+id/view_deletebtn"
+        android:layout_alignEnd="@+id/view_deletebtn"
+        android:layout_marginTop="29dp"
+        android:onClick="btn_click" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE"
+        android:id="@+id/Update_button"
+        android:textColor="#FF16D316"
+        android:layout_alignBottom="@+id/delete_button"
+        android:layout_alignLeft="@+id/view_updateuserbtn"
+        android:layout_alignStart="@+id/view_updateuserbtn"
+        android:onClick="btn_click" />
+
+</RelativeLayout>
